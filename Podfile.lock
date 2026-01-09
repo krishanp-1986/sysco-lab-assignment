@@ -20,6 +20,7 @@ PODS:
   - RxTest (6.9.0):
     - RxSwift (= 6.9.0)
   - SnapKit (5.7.1)
+  - SwiftLint (0.63.0)
 
 DEPENDENCIES:
   - Nimble
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - RxSwift
   - RxTest
   - SnapKit
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
@@ -43,6 +45,7 @@ SPEC REPOS:
     - RxSwift
     - RxTest
     - SnapKit
+    - SwiftLint
 
 SPEC CHECKSUMS:
   CwlCatchException: 7acc161b299a6de7f0a46a6ed741eae2c8b4d75a
@@ -57,7 +60,8 @@ SPEC CHECKSUMS:
   RxSwift: 31649ace6aceeb422e16ff71c60804f9c3281ed9
   RxTest: fa7749822359a10a19b9fa32b80dbe608e4ce44e
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+  SwiftLint: e9074baeb1a9fc1e78a4055967f73860313c6a9e
 
-PODFILE CHECKSUM: 574700911003c6f0b90b5f7768769f0f14dfbd16
+PODFILE CHECKSUM: 9e83342745352931623dd885aab725ee74ac09a3
 
 COCOAPODS: 1.16.2

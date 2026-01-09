@@ -1,6 +1,8 @@
-
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
 def commonPods
   pod 'SnapKit'
+  pod 'SwiftLint'
 end
 
 def reactivePods
@@ -19,7 +21,7 @@ target 'Syscolabs-star-war-planet' do
   use_frameworks!
   commonPods
   reactivePods
-
+  
   # Pods for Syscolabs-star-war-planet
 
   target 'Syscolabs-star-war-planetTests' do
