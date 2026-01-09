@@ -1,0 +1,35 @@
+
+def commonPods
+  pod 'SnapKit'
+end
+
+def reactivePods
+  pod 'RxSwift'
+  pod 'RxCocoa'
+end
+
+def testingPods
+  pod 'Nimble'
+  pod 'Quick'
+  pod 'RxTest'
+end
+
+target 'Syscolabs-star-war-planet' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  commonPods
+  reactivePods
+
+  # Pods for Syscolabs-star-war-planet
+
+  target 'Syscolabs-star-war-planetTests' do
+    inherit! :search_paths
+    # Pods for testing
+    testingPods
+  end
+
+  target 'Syscolabs-star-war-planetUITests' do
+    # Pods for testing
+  end
+
+end
