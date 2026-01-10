@@ -29,9 +29,4 @@ target 'Syscolabs-star-war-planet' do
     # Pods for testing
     testingPods
   end
-
-  target 'Syscolabs-star-war-planetUITests' do
-    # Pods for testing
-  end
-
 end
