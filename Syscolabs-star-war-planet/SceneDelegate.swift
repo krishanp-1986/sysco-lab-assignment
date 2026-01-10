@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windoScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windoScene)
-        window?.rootViewController = Planets.build()
+        window?.rootViewController = PlanetsList.build()
         window?.makeKeyAndVisible()
     }
 

@@ -7,20 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05F1A7106B353C6AD6ED102D /* Pods_Syscolabs_star_war_planet_Syscolabs_star_war_planetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423E0423E997766036D48120 /* Pods_Syscolabs_star_war_planet_Syscolabs_star_war_planetUITests.framework */; };
 		1FD8808474D3D0B938F7E11F /* Pods_Syscolabs_star_war_planet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99379A4D7BD3F795EF35023 /* Pods_Syscolabs_star_war_planet.framework */; };
 		B4F8540BFBA381F5FDBA9906 /* Pods_Syscolabs_star_war_planetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D32C9720C392FE23A96DB1A5 /* Pods_Syscolabs_star_war_planetTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		81A55EE52F11445600866D8C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81A55EC62F11445400866D8C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 81A55ECD2F11445400866D8C;
-			remoteInfo = "Syscolabs-star-war-planet";
-		};
-		81A55EEF2F11445600866D8C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81A55EC62F11445400866D8C /* Project object */;
 			proxyType = 1;
@@ -37,7 +29,6 @@
 		768AEBB9C379101FA5C0D294 /* Pods-Syscolabs-star-war-planetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syscolabs-star-war-planetTests.release.xcconfig"; path = "Target Support Files/Pods-Syscolabs-star-war-planetTests/Pods-Syscolabs-star-war-planetTests.release.xcconfig"; sourceTree = "<group>"; };
 		81A55ECE2F11445400866D8C /* Syscolabs-star-war-planet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Syscolabs-star-war-planet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81A55EE42F11445600866D8C /* Syscolabs-star-war-planetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Syscolabs-star-war-planetTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81A55EEE2F11445600866D8C /* Syscolabs-star-war-planetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Syscolabs-star-war-planetUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83DFF56B67D9DB55F7242F50 /* Pods-Syscolabs-star-war-planet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syscolabs-star-war-planet.debug.xcconfig"; path = "Target Support Files/Pods-Syscolabs-star-war-planet/Pods-Syscolabs-star-war-planet.debug.xcconfig"; sourceTree = "<group>"; };
 		B99379A4D7BD3F795EF35023 /* Pods_Syscolabs_star_war_planet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Syscolabs_star_war_planet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51EDB558B14452445B157F4 /* Pods-Syscolabs-star-war-planet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syscolabs-star-war-planet.release.xcconfig"; path = "Target Support Files/Pods-Syscolabs-star-war-planet/Pods-Syscolabs-star-war-planet.release.xcconfig"; sourceTree = "<group>"; };
@@ -65,12 +56,9 @@
 		};
 		81A55EE72F11445600866D8C /* Syscolabs-star-war-planetTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = "Syscolabs-star-war-planetTests";
-			sourceTree = "<group>";
-		};
-		81A55EF12F11445600866D8C /* Syscolabs-star-war-planetUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Syscolabs-star-war-planetUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -92,14 +80,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		81A55EEB2F11445600866D8C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				05F1A7106B353C6AD6ED102D /* Pods_Syscolabs_star_war_planet_Syscolabs_star_war_planetUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -118,7 +98,6 @@
 			children = (
 				81A55ED02F11445400866D8C /* Syscolabs-star-war-planet */,
 				81A55EE72F11445600866D8C /* Syscolabs-star-war-planetTests */,
-				81A55EF12F11445600866D8C /* Syscolabs-star-war-planetUITests */,
 				81A55ECF2F11445400866D8C /* Products */,
 				94D22E011A7B2D0F19D21322 /* Pods */,
 				80F61D999FD6A53CCBCE97F1 /* Frameworks */,
@@ -130,7 +109,6 @@
 			children = (
 				81A55ECE2F11445400866D8C /* Syscolabs-star-war-planet.app */,
 				81A55EE42F11445600866D8C /* Syscolabs-star-war-planetTests.xctest */,
-				81A55EEE2F11445600866D8C /* Syscolabs-star-war-planetUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,29 +174,6 @@
 			productReference = 81A55EE42F11445600866D8C /* Syscolabs-star-war-planetTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		81A55EED2F11445600866D8C /* Syscolabs-star-war-planetUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 81A55EFF2F11445600866D8C /* Build configuration list for PBXNativeTarget "Syscolabs-star-war-planetUITests" */;
-			buildPhases = (
-				5D0902C4AEE8DCAB08B0D6F5 /* [CP] Check Pods Manifest.lock */,
-				81A55EEA2F11445600866D8C /* Sources */,
-				81A55EEB2F11445600866D8C /* Frameworks */,
-				81A55EEC2F11445600866D8C /* Resources */,
-				E94420515D840C03DD789BA1 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				81A55EF02F11445600866D8C /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				81A55EF12F11445600866D8C /* Syscolabs-star-war-planetUITests */,
-			);
-			name = "Syscolabs-star-war-planetUITests";
-			productName = "Syscolabs-star-war-planetUITests";
-			productReference = 81A55EEE2F11445600866D8C /* Syscolabs-star-war-planetUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -234,10 +189,7 @@
 					};
 					81A55EE32F11445600866D8C = {
 						CreatedOnToolsVersion = 16.3;
-						TestTargetID = 81A55ECD2F11445400866D8C;
-					};
-					81A55EED2F11445600866D8C = {
-						CreatedOnToolsVersion = 16.3;
+						LastSwiftMigration = 1630;
 						TestTargetID = 81A55ECD2F11445400866D8C;
 					};
 				};
@@ -258,7 +210,6 @@
 			targets = (
 				81A55ECD2F11445400866D8C /* Syscolabs-star-war-planet */,
 				81A55EE32F11445600866D8C /* Syscolabs-star-war-planetTests */,
-				81A55EED2F11445600866D8C /* Syscolabs-star-war-planetUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -278,13 +229,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		81A55EEC2F11445600866D8C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -296,39 +240,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Syscolabs-star-war-planet/Pods-Syscolabs-star-war-planet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Syscolabs-star-war-planet/Pods-Syscolabs-star-war-planet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			outputPaths = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Syscolabs-star-war-planet/Pods-Syscolabs-star-war-planet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5D0902C4AEE8DCAB08B0D6F5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Syscolabs-star-war-planet-Syscolabs-star-war-planetUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5F26144B84A030984267221B /* [CP] Embed Pods Frameworks */ = {
@@ -339,13 +257,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Syscolabs-star-war-planetTests/Pods-Syscolabs-star-war-planetTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Syscolabs-star-war-planetTests/Pods-Syscolabs-star-war-planetTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -372,27 +286,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E94420515D840C03DD789BA1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Syscolabs-star-war-planet-Syscolabs-star-war-planetUITests/Pods-Syscolabs-star-war-planet-Syscolabs-star-war-planetUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Syscolabs-star-war-planet-Syscolabs-star-war-planetUITests/Pods-Syscolabs-star-war-planet-Syscolabs-star-war-planetUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Syscolabs-star-war-planet-Syscolabs-star-war-planetUITests/Pods-Syscolabs-star-war-planet-Syscolabs-star-war-planetUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FAD818899F441C604F9C8F62 /* [CP] Check Pods Manifest.lock */ = {
@@ -434,13 +327,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		81A55EEA2F11445600866D8C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -448,11 +334,6 @@
 			isa = PBXTargetDependency;
 			target = 81A55ECD2F11445400866D8C /* Syscolabs-star-war-planet */;
 			targetProxy = 81A55EE52F11445600866D8C /* PBXContainerItemProxy */;
-		};
-		81A55EF02F11445600866D8C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 81A55ECD2F11445400866D8C /* Syscolabs-star-war-planet */;
-			targetProxy = 81A55EEF2F11445600866D8C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -552,7 +433,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -615,7 +496,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -639,14 +520,17 @@
 			baseConfigurationReference = 5E0ECA1A1E621404FE395474 /* Pods-Syscolabs-star-war-planetTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "syscolabs.com.Syscolabs-star-war-planetTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Syscolabs-star-war-planet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Syscolabs-star-war-planet";
@@ -658,8 +542,10 @@
 			baseConfigurationReference = 768AEBB9C379101FA5C0D294 /* Pods-Syscolabs-star-war-planetTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				MARKETING_VERSION = 1.0;
@@ -669,40 +555,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Syscolabs-star-war-planet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Syscolabs-star-war-planet";
-			};
-			name = Release;
-		};
-		81A55F002F11445600866D8C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1649B004E4D34D26A2FC126D /* Pods-Syscolabs-star-war-planet-Syscolabs-star-war-planetUITests.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "syscolabs.com.Syscolabs-star-war-planetUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Syscolabs-star-war-planet";
-			};
-			name = Debug;
-		};
-		81A55F012F11445600866D8C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69B22861BBA6B4D7235DEB09 /* Pods-Syscolabs-star-war-planet-Syscolabs-star-war-planetUITests.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "syscolabs.com.Syscolabs-star-war-planetUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Syscolabs-star-war-planet";
 			};
 			name = Release;
 		};
@@ -732,15 +584,6 @@
 			buildConfigurations = (
 				81A55EFD2F11445600866D8C /* Debug */,
 				81A55EFE2F11445600866D8C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		81A55EFF2F11445600866D8C /* Build configuration list for PBXNativeTarget "Syscolabs-star-war-planetUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				81A55F002F11445600866D8C /* Debug */,
-				81A55F012F11445600866D8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

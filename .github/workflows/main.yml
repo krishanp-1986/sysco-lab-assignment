@@ -1,0 +1,46 @@
+name: branch
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_16.3.app/Contents/Developer
+
+jobs:
+  build:
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler: "2.7.2"
+          bundler-cache: true
+
+      - name: Cache Pods
+        uses: actions/cache@v4
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Install Pods
+        run: bundle exec pod install
+
+      - name: Unit Tests
+        run: bundle exec fastlane run_all_tests
+
+      - name: Build Debug
+        run: bundle exec fastlane build_debug
+

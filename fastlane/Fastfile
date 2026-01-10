@@ -13,11 +13,42 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+require File.expand_path('parameters/project_params.rb', __dir__)
+
+DERIVED_DATA_PATH = PROJECT_PARAMS[:DERIVED_DATA_PATH]
+WORKSPACE = sh 'ls ..|grep "xcworkspace"|sort -r|head -n 1|tr -d "\n"'
+APP_SCHEME = WORKSPACE.split('.')[0]
+TEST_DEVICES      = PROJECT_PARAMS[:TEST_DEVICES]
+DERIVED_DATA_PATH = PROJECT_PARAMS[:DERIVED_DATA_PATH]
+REPORTS_FOLDER = PROJECT_PARAMS[:REPORTS_FOLDER]
+
+import('Test')
+import('Build')
+
 default_platform(:ios)
 
-platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
-  end
+# --- Before all, prepare
+
+before_all do |lane, options|
+    # - Install dependencies if needed
+    clear_derived_data(derived_data_path: DERIVED_DATA_PATH)
+    prepare
+end
+
+
+desc 'prepares the environment'
+private_lane :prepare do |options|
+    defaults = {
+        derived_data_path: DERIVED_DATA_PATH
+    }.freeze
+    options = defaults.merge(options)
+
+     # Update/Install Pods
+     pods_update
+end
+
+private_lane :pods_update do
+  cocoapods(use_bundle_exec: true, error_callback: lambda { |_result|
+    cocoapods(use_bundle_exec: true, repo_update: true)
+  })
 end

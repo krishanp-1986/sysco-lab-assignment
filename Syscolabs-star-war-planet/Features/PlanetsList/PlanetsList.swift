@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Planets {
+struct PlanetsList {
     static func build() -> UIViewController {
         let navigationController = UINavigationController()
         let viewController = UIViewController()

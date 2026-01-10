@@ -1,0 +1,26 @@
+require File.expand_path('parameters/project_params.rb', __dir__)
+
+
+default_platform(:ios)
+
+
+desc 'runs everything but deploy'
+lane :run_all_but_deploy do
+    run_all_tests
+end
+
+desc 'run all tests'
+lane :run_all_tests do |options|
+  defaults = {
+    workspace: WORKSPACE,
+    scheme: APP_SCHEME,
+    code_coverage: true,
+    devices: TEST_DEVICES,
+    derived_data_path: DERIVED_DATA_PATH,
+    output_directory: REPORTS_FOLDER,
+    skip_build: true
+  }.freeze
+
+  scan(defaults.merge(options))
+
+end
