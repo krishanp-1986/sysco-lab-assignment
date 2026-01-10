@@ -11,8 +11,11 @@ import UIKit
 struct PlanetsList {
     static func build() -> UIViewController {
         let navigationController = UINavigationController()
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .red
-        return viewController
+        let viewController = PlanetsListViewController()
+        let useCase = PlanetsListUseCase(dataProvider: DefaultDataProvider())
+        let viewModel = PlanetsListViewModelImpl(with: useCase)
+        viewController.bindViewModel(viewModel)
+        navigationController.viewControllers = [viewController]
+        return navigationController
     }
 }

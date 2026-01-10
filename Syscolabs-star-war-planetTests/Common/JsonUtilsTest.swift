@@ -26,7 +26,7 @@ class JsonUtilsTests: QuickSpec {
       
       context("for valid json file") {
         it("should return planets response dto") {
-            let decoded = JsonUtils.convertJsonInto(type: [Planets].self,
+            let decoded = JsonUtils.convertJsonInto(type: [Planet].self,
                                                            fileName: "planets",
                                                            bundle: bundle,
                                                            inDirectory: nil)
