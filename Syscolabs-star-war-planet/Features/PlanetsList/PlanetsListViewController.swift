@@ -34,7 +34,7 @@ class PlanetsListViewController: BaseViewController<PlanetsListViewModel> {
         let output = viewModel.bind(input:
                 .init(
                     viewDidLoad: self.rx.viewWillAppear.asObservable(),
-                    didSelectPlanet: self.tableViewAdapter.onItemSelected.asObservable()
+                    selectedIndex: self.tableViewAdapter.selectedIndex.asObservable()
                 ))
         
         disposeBag.insert {
@@ -66,12 +66,21 @@ class PlanetsListViewController: BaseViewController<PlanetsListViewModel> {
     }
     
     private func displayLoadingIndicator() {
+        self.view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
     }
     
     private func dataLoaded(cellModels: [PlanetCellViewModel]) {
+        self.activityIndicator.removeFromSuperview()
         self.tableViewAdapter.insertPlanets(cellModels)
     }
         
-    private func handleError(error: Error) {}
+    private func handleError(error: Error) {
+        self.activityIndicator.removeFromSuperview()
+        self.displayBasicAlert(error: error)
+        
+    }
 }
 
