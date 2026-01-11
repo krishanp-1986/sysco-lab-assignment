@@ -23,3 +23,10 @@ public extension Error {
         return nsError.domain == NSURLErrorDomain && networkErrorCodes.contains(nsError.code)
     }
 }
+
+
+public extension NSError {
+    static var noSearchResults: NSError {
+        NSError(domain: "com.syscolabs.starwarplanet", code: 404, userInfo: [NSLocalizedDescriptionKey: "No results found for your search."])
+    }
+}

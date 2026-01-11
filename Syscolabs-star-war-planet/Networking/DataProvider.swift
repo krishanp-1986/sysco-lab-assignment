@@ -51,7 +51,6 @@ public struct DefaultDataProvider: DataProvider {
         response: URLResponse
     ) throws -> Response<T> {
         
-        debugPrint("Response: \(response)")
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkingError.invalidResponse
         }
