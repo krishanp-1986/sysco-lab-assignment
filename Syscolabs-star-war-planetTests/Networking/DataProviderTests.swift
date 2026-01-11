@@ -10,65 +10,38 @@ import Quick
 import Nimble
 @testable import Syscolabs_star_war_planet
 
-final class DataProviderTests: QuickSpec {
+final class DataProviderTests: AsyncSpec {
     
     override class func spec() {
         describe("DefaultDataProvider") {
             var sut: DefaultDataProvider!
             context("When API returns success") {
                 it("Should decode empty response") {
-                    waitUntil(timeout: .seconds(2)) { done in
-                        Task {
-                            do {
-                                let apiTarget = StubbedApiTarget(localJsonResourceName: "empty-response")
-                                sut = .init()
-                                let response: Response<[String: String]> = try await sut.execute(apiTarget: apiTarget)
-                                expect(response.value).toNot(beNil())
-                                expect(response.value).to(beEmpty())
-                                
-                            } catch {
-                                fail("Expected success but got error: \(error)")
-                            }
-                            done()
-                        }
-                    }
+                    let apiTarget = StubbedApiTarget(localJsonResourceName: "empty-response")
+                    sut = .init()
+                    let response: Response<[String: String]> = try await sut.execute(apiTarget: apiTarget)
+                    expect(response.value).toNot(beNil())
+                    expect(response.value).to(beEmpty())
                 }
                 
                 it("Should decode valid response") {
-                    waitUntil(timeout: .seconds(1)) { done in
-                        Task {
-                            do {
-                                let apiTarget = StubbedApiTarget(localJsonResourceName: "valid-json-response")
-                                sut = .init()
-                                let response: Response<[String: String]> = try await sut.execute(apiTarget: apiTarget)
-                                debugPrint("Response Value: \(response.value)")
-                                expect(response.value).toNot(beNil())
-                                expect(response.value).toNot(beEmpty())
-                                expect(response.value) == ["key1": "value1", "key2": "value2"]
-                                
-                            } catch {
-                                fail("Expected success but got error: \(error)")
-                            }
-                            done()
-                        }
-                    }
+                    let apiTarget = StubbedApiTarget(localJsonResourceName: "valid-json-response")
+                    sut = .init()
+                    let response: Response<[String: String]> = try await sut.execute(apiTarget: apiTarget)
+                    debugPrint("Response Value: \(response.value)")
+                    expect(response.value).toNot(beNil())
+                    expect(response.value).toNot(beEmpty())
+                    expect(response.value) == ["key1": "value1", "key2": "value2"]
                 }
                 
                 it("Should return error for invalid jsons") {
-                    waitUntil(timeout: .seconds(1)) { done in
-                        Task {
-                            do {
-                                let apiTarget = StubbedApiTarget(localJsonResourceName: "invalid-json")
-                                sut = .init()
-                                let response: Response<[String: String]> = try await sut.execute(apiTarget: apiTarget)
-                                fail("Expected failure but got success with value: \(response.value)")
-                                
-                            } catch {
-                                expect(error).to(matchError(NetworkingError.invalidData))
-                            }
-                            done()
-                        }
-                    }
+                    let apiTarget = StubbedApiTarget(localJsonResourceName: "invalid-json")
+                    sut = .init()
+                    await expect {
+                        let _: Response<[String: String]> = try await sut.execute(apiTarget: apiTarget)
+                      }.to(throwError { error in
+                          expect(error).to(matchError(NetworkingError.invalidData))
+                      })
                 }
             }
             
@@ -85,25 +58,18 @@ final class DataProviderTests: QuickSpec {
                         let response = HTTPURLResponse(url: request.url!, statusCode: 400, httpVersion: nil, headerFields: nil)!
                         return (response, .init(), nil)
                     }
+                    let apiTarget = StubbedApiTarget(localJsonResourceName: nil, stubbingbehaviour: .none)
+                    sut = .init()
                     
-                    waitUntil(timeout: .seconds(2)) { done in
-                        Task {
-                            do {
-                                let apiTarget = StubbedApiTarget(localJsonResourceName: nil, stubbingbehaviour: .none)
-                                sut = .init()
-                                let response: Response<[String: String]> = try await sut.execute(apiTarget: apiTarget)
-                                fail("Expected failure but got success with value: \(response.value)")
-                                
-                            } catch {
-                                expect(error).to(matchError(NetworkingError.error(NSError(
-                                    domain: "",
-                                    code: 400,
-                                    userInfo: nil
-                                ))))
-                            }
-                            done()
-                        }
-                    }
+                    await expect {
+                        let _: Response<[String: String]> = try await sut.execute(apiTarget: apiTarget)
+                      }.to(throwError { error in
+                          expect(error).to(matchError(NetworkingError.error(NSError(
+                            domain: "",
+                            code: 400,
+                            userInfo: nil
+                        ))))
+                      })
                 }
             }
             

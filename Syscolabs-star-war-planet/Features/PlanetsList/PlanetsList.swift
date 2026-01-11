@@ -12,7 +12,9 @@ struct PlanetsList {
     static func build() -> UIViewController {
         let navigationController = UINavigationController()
         let viewController = PlanetsListViewController()
-        let useCase = PlanetsListUseCase(dataProvider: DefaultDataProvider())
+        let planetsClient = PlanetsClientImpl(with:  DefaultDataProvider())
+        let planetsRepository = PlanetsRepository(apiClient: planetsClient)
+        let useCase = PlanetsListUseCase(repository: planetsRepository)
         let router = PlanetsRouterImpl(rootViewController: navigationController)
         let viewModel = PlanetsListViewModelImpl(with: useCase, router: router)
         viewController.bindViewModel(viewModel)

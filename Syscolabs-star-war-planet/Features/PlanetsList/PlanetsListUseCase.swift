@@ -12,26 +12,16 @@ protocol PlanetsListUseCaseProtocol {
 }
 
 class PlanetsListUseCase: PlanetsListUseCaseProtocol {
-    
-    let dataProvider: DataProvider
-    let _client: PlanetsAPIClient?
-    
-    init(dataProvider: DataProvider, _client: PlanetsAPIClient? = nil) {
-        self.dataProvider = dataProvider
-        self._client = _client
-    }
-    
-    private lazy var client: PlanetsAPIClient = {
-        if let _client {
-            return _client
-        }
         
-        return PlanetsClientImpl(with: dataProvider)
-    }()
+    private let repository: PlanetsRepositoryProtocol
+    
+    init(repository: PlanetsRepositoryProtocol) {
+        self.repository = repository
+    }
     
     
     func fetchPlanetsList() async throws -> [Planet] {
-        try await client.fetchAllPlanets().value
+        try await repository.fetchPlanets()
     }
     
 }
