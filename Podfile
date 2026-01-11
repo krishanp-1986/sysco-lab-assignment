@@ -3,6 +3,7 @@
 def commonPods
   pod 'SnapKit'
   pod 'SwiftLint'
+  pod 'RealmSwift'
 end
 
 def reactivePods
