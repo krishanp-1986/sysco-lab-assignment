@@ -18,12 +18,14 @@ class PlanetsListViewModelImplSpec: QuickSpec {
         var disposeBag: DisposeBag!
         var useCase: MockPlanetsListUseCase!
         var sut: PlanetsListViewModelImpl!
-        var selectedPlanet: PublishSubject<Planet>!
+        var selectedPlanet: PublishSubject<Int>!
         var viewDidLoad: PublishSubject<Void>!
+        var router: PlanetsRouter!
         beforeEach {
             
             useCase = MockPlanetsListUseCase()
-            sut = PlanetsListViewModelImpl(with: useCase)
+            router = MockPlanetsRouter()
+            sut = PlanetsListViewModelImpl(with: useCase, router: router)
             disposeBag = DisposeBag()
             selectedPlanet = .init()
             viewDidLoad = .init()
@@ -42,7 +44,7 @@ class PlanetsListViewModelImplSpec: QuickSpec {
                 
                 let input = PlanetsListViewModelInput(
                     viewDidLoad: viewDidLoad.asObservable(),
-                    didSelectPlanet: selectedPlanet.asObservable()
+                    selectedIndex: selectedPlanet.asObservable()
                 )
                 
                 var states: [State] = []
@@ -62,7 +64,7 @@ class PlanetsListViewModelImplSpec: QuickSpec {
                 
                 if case .loaded(let cellViewModels) = states.last {
                     expect(cellViewModels.count) == planets.count
-                    expect(cellViewModels.first?.planet.name) == planets.first?.name
+                    expect(cellViewModels.first?.name) == planets.first?.name
                 } else {
                     fail("Expected loaded state")
                 }
@@ -73,7 +75,7 @@ class PlanetsListViewModelImplSpec: QuickSpec {
                 
                 let input = PlanetsListViewModelInput(
                     viewDidLoad: viewDidLoad.asObservable(),
-                    didSelectPlanet: selectedPlanet.asObservable()
+                    selectedIndex: selectedPlanet.asObservable()
                 )
                 
                 var states: [State] = []
@@ -115,4 +117,12 @@ final class MockPlanetsListUseCase: PlanetsListUseCaseProtocol {
             throw error
         }
     }
+}
+
+final class MockPlanetsRouter: PlanetsRouter {
+    func navigateToDetails(planet: Planet) {
+        navigateToPlanetDetailsCalled = true
+    }
+    
+    var navigateToPlanetDetailsCalled = false
 }
