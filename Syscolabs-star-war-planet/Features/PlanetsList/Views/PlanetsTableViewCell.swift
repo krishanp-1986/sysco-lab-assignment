@@ -20,22 +20,45 @@ class PlanetTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.asyncImageView.cancel()
+    }
+    
     // MARK: - Private
     private func buildUI() {
-        self.contentView.addSubview(nameLabel)
-        self.contentView.addSubview(climateLabel)
+        self.contentView.addSubview(asyncImageView)
+        self.contentView.addSubview(labelContainer)
         
         let mediumSize = DesignSystem.shared.sizer.md
         
-        self.nameLabel.snp.makeConstraints {
-            $0.left.top.right.equalToSuperview().inset(mediumSize)
+        self.asyncImageView.snp.makeConstraints {
+            $0.left.top.bottom.equalToSuperview().inset(mediumSize)
+            $0.width.equalTo(200)
+            $0.height.equalTo(200)
         }
         
-        self.climateLabel.snp.makeConstraints {
-            $0.left.bottom.right.equalToSuperview().inset(mediumSize)
-            $0.top.equalTo(self.nameLabel.snp.bottom).offset(DesignSystem.shared.sizer.sm)
+        labelContainer.snp.makeConstraints {
+            $0.left.equalTo(self.asyncImageView.snp.right).offset(mediumSize)
+            $0.centerY.equalToSuperview()
+            
         }
     }
+    
+    private lazy var asyncImageView: AsyncImageView = {
+        let imageView = AsyncImageView()
+        return imageView
+    }()
+    
+    private lazy var labelContainer: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [nameLabel, climateLabel])
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        stackView.spacing = CGFloat(DesignSystem.shared.sizer.md)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
@@ -58,28 +81,23 @@ extension PlanetTableViewCell: CellConfigurable {
     func configure(with viewModel: PlanetCellViewModel) {
         self.nameLabel.text = viewModel.name
         self.climateLabel.text = viewModel.climate
+        self.asyncImageView.load(url: viewModel.imageURL)
     }
 }
 
 struct PlanetCellViewModel {
-    let planet: Planet
-    
-    var name: String {
-        planet.name
-    }
-    
-    var climate: String {
-        planet.climate
-    }
+    let name: String
+    let climate: String
+    let imageURL: URL?
 }
 
 extension PlanetCellViewModel: Hashable {
     static func == (lhs: PlanetCellViewModel, rhs: PlanetCellViewModel) -> Bool {
-        (lhs.planet.name == rhs.planet.name)
+        (lhs.name == rhs.name)
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(self.planet.name)
+        hasher.combine(self.name)
     }
 }
 

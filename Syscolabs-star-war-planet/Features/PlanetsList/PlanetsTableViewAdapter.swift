@@ -33,7 +33,7 @@ final class PlanetsTableViewAdapter: NSObject {
         datasource.apply(snapshot, animatingDifferences: false, completion: nil)
     }
     
-    var onItemSelected: PublishRelay<Planet> = PublishRelay<Planet>()
+    var selectedIndex: PublishRelay<Int> = PublishRelay<Int>()
     // MARK: Private
     private let tableView: UITableView
     
@@ -52,7 +52,6 @@ final class PlanetsTableViewAdapter: NSObject {
 
 extension PlanetsTableViewAdapter: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let selected = datasource.itemIdentifier(for: indexPath) else { return }
-        self.onItemSelected.accept(selected.planet)
+        self.selectedIndex.accept(indexPath.row)
     }
 }

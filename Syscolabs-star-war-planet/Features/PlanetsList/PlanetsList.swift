@@ -13,7 +13,8 @@ struct PlanetsList {
         let navigationController = UINavigationController()
         let viewController = PlanetsListViewController()
         let useCase = PlanetsListUseCase(dataProvider: DefaultDataProvider())
-        let viewModel = PlanetsListViewModelImpl(with: useCase)
+        let router = PlanetsRouterImpl(rootViewController: navigationController)
+        let viewModel = PlanetsListViewModelImpl(with: useCase, router: router)
         viewController.bindViewModel(viewModel)
         navigationController.viewControllers = [viewController]
         return navigationController

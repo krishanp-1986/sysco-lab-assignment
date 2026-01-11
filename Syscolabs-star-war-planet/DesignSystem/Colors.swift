@@ -17,6 +17,7 @@ extension DesignSystem {
     
     // Background
       public let backgroundPrimary = UIColor(light: .white, dark: .white)
+      public let backgroundSecondory = UIColor(light: .systemGray6, dark: .systemGray6)
   }
 }
 
