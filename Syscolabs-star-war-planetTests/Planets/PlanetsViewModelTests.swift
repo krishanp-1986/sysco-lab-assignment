@@ -20,6 +20,7 @@ class PlanetsListViewModelImplSpec: QuickSpec {
         var sut: PlanetsListViewModelImpl!
         var selectedPlanet: PublishSubject<Int>!
         var viewDidLoad: PublishSubject<Void>!
+        var searchQuery: PublishSubject<String>!
         var router: PlanetsRouter!
         beforeEach {
             
@@ -29,6 +30,7 @@ class PlanetsListViewModelImplSpec: QuickSpec {
             disposeBag = DisposeBag()
             selectedPlanet = .init()
             viewDidLoad = .init()
+            searchQuery = .init()
         }
         
         afterEach {
@@ -44,7 +46,8 @@ class PlanetsListViewModelImplSpec: QuickSpec {
                 
                 let input = PlanetsListViewModelInput(
                     viewDidLoad: viewDidLoad.asObservable(),
-                    selectedIndex: selectedPlanet.asObservable()
+                    selectedIndex: selectedPlanet.asObservable(),
+                    query: searchQuery.asObservable()
                 )
                 
                 var states: [State] = []
@@ -75,7 +78,8 @@ class PlanetsListViewModelImplSpec: QuickSpec {
                 
                 let input = PlanetsListViewModelInput(
                     viewDidLoad: viewDidLoad.asObservable(),
-                    selectedIndex: selectedPlanet.asObservable()
+                    selectedIndex: selectedPlanet.asObservable(),
+                    query: searchQuery.asObservable()
                 )
                 
                 var states: [State] = []
@@ -98,6 +102,95 @@ class PlanetsListViewModelImplSpec: QuickSpec {
                 } else {
                     fail("Expected failes state")
                 }
+            }
+            
+            it("emits filtered planets when valid search query is provided") {
+                let planets: [Planet] = JsonUtils.convertJsonInto(type: [Planet].self, fileName: "planets", bundle: bundle) ?? []
+                useCase.result = .success(planets)
+                
+                let input = PlanetsListViewModelInput(
+                    viewDidLoad: viewDidLoad.asObservable(),
+                    selectedIndex: selectedPlanet.asObservable(),
+                    query: searchQuery.asObservable()
+                )
+                
+                var states: [State] = []
+                sut
+                    .bind(input: input)
+                    .drive(onNext: { state in
+                        states.append(state)
+                    })
+                    .disposed(by: disposeBag)
+                
+                
+                
+                // Trigger viewDidLoad
+                viewDidLoad.onNext(())
+                
+                // Wait for async state emission
+                expect(states).toEventually(haveCount(2), timeout: .seconds(2))
+                var firstimageUrl: String?
+                if case .loaded(let cellViewModels) = states.last {
+                    expect(cellViewModels.count) == planets.count
+                    expect(cellViewModels.first?.name) == planets.first?.name
+                    firstimageUrl = cellViewModels.first?.imageURL?.absoluteString
+                } else {
+                    fail("Expected loaded state")
+                }
+                
+                searchQuery.onNext("")
+                searchQuery.onNext("Tatooine")
+                
+                expect(states).toEventually(haveCount(3), timeout: .seconds(2))
+                
+                
+                if case .loaded(let cellViewModels) = states.last {
+                    expect(cellViewModels.count) == 1
+                    expect(cellViewModels.first?.name) == planets.first?.name
+                    expect(cellViewModels.first?.imageURL?.absoluteString) == firstimageUrl
+                } else {
+                    fail("Expected loaded state")
+                }
+            }
+            
+            
+            it("emits loaded and no results found for unmatched search query") {
+                let planets: [Planet] = JsonUtils.convertJsonInto(type: [Planet].self, fileName: "planets", bundle: bundle) ?? []
+                useCase.result = .success(planets)
+                
+                let input = PlanetsListViewModelInput(
+                    viewDidLoad: viewDidLoad.asObservable(),
+                    selectedIndex: selectedPlanet.asObservable(),
+                    query: searchQuery.asObservable()
+                )
+                
+                var states: [State] = []
+                sut
+                    .bind(input: input)
+                    .drive(onNext: { state in
+                        states.append(state)
+                    })
+                    .disposed(by: disposeBag)
+                
+                
+                
+                // Trigger viewDidLoad
+                viewDidLoad.onNext(())
+                
+                expect(states).toEventually(haveCount(2), timeout: .seconds(2))
+                // Wait for async state emission
+                searchQuery.onNext("")
+                searchQuery.onNext("asdfadfads")
+                
+                expect(states).toEventually(haveCount(3), timeout: .seconds(5))
+                
+                
+                if case .failed(let error) = states.last {
+                    expect(error).to(matchError(NSError.noSearchResults))
+                } else {
+                    fail("Expected failes state")
+                }
+                
             }
         }
     }

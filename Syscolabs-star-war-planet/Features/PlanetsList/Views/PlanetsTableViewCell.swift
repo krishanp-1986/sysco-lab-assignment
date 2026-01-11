@@ -12,8 +12,8 @@ class PlanetTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         buildUI()
-        self.contentView.backgroundColor = .clear
-        self.backgroundColor = .clear
+        self.contentView.backgroundColor = DesignSystem.shared.colors.backgroundPrimary
+        self.backgroundColor = DesignSystem.shared.colors.backgroundPrimary
     }
     
     required init?(coder: NSCoder) {
